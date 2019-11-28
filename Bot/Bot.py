@@ -118,17 +118,17 @@ async def on_message(message):
 
         # Embed to display player stats
         embed = discord.Embed(
-            title = name,
-            url = url,
-            color = discord.Color.gold()
+            color = discord.Color.teal()
         )
-        embed.set_thumbnail(url = "https:" + profile_icon)
+        embed.set_author(name = name, url = url, icon_url = "https:" + profile_icon)
+        embed.set_thumbnail(url = "https:" + tier_icon)
         embed.add_field(name = "Level", value = level, inline = True)
         embed.add_field(name = "Tier Rank", value = tier_rank, inline = True)
         embed.add_field(name = "League Points", value = lp, inline = True)
         embed.add_field(name = "Wins", value = wins, inline = True)
         embed.add_field(name = "Losses", value = losses, inline = True)
         embed.add_field(name = "Win/Loss", value = winratio, inline = True)
+        embed.set_footer(text = "Stats found at op.gg")
 
         await message.channel.send(embed = embed)
 

@@ -78,9 +78,9 @@ async def on_message(message):
         if tier != None:
 
             # Get tier rank
-            tier_rank = tier.find('div', class_= "TierRank")
-            if tier_rank != None:
-                tier_rank = re.sub('\s+', '', tier_rank.text)    # remove whitespace
+            tier_rank = tier.find('div', class_= "TierRank").text
+            # if tier_rank != None:
+                # tier_rank = re.sub('\s+', '', tier_rank.text)    # remove whitespace
 
             # Get League Points
             lp = tier.find('span', class_= "LeaguePoints")
@@ -116,15 +116,22 @@ async def on_message(message):
                 print("No winratio")
                 winratio = "N/A"
 
-        await message.channel.send("Name: " + name)
-        await message.channel.send("Profile Image: " + profile_icon)
-        await message.channel.send("Level: " + level)
-        await message.channel.send("Tier Image: " + tier_icon)
-        await message.channel.send("Tier Rank: "  + tier_rank)
-        await message.channel.send("LP: " + lp)
-        await message.channel.send("Wins: " + wins)
-        await message.channel.send("Losses: " + losses)
-        await message.channel.send("Win ratio: " + winratio)
+        # Embed to display player stats
+        embed = discord.Embed(
+            title = name,
+            url = url,
+            color = discord.Color.gold()
+        )
+        embed.set_thumbnail(url = "https:" + profile_icon)
+        embed.add_field(name = "Level", value = level, inline = True)
+        embed.add_field(name = "Tier Rank", value = tier_rank, inline = True)
+        embed.add_field(name = "League Points", value = lp, inline = True)
+        embed.add_field(name = "Wins", value = wins, inline = True)
+        embed.add_field(name = "Losses", value = losses, inline = True)
+        embed.add_field(name = "Win/Loss", value = winratio, inline = True)
+
+        await message.channel.send(embed = embed)
+
 
 
 @client.event

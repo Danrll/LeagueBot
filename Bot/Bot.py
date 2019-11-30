@@ -23,6 +23,8 @@ async def on_message(message):
 
     # Prints the LoL stats of a specified player as an embed
     if args[0] == '!stats':
+    
+   
 
         # Ensure there is only 1 argument (name of player)
         if len(args) != 2:
@@ -52,6 +54,55 @@ async def on_message(message):
         embed.set_footer(text = "Stats found at op.gg")
 
         await message.channel.send(embed = embed)
+
+     if args[0] == '!meta': #prints the best champions for a specific role
+          
+           # Ensure there is only 1 argument 
+        if len(args) != 2:
+            print("Invalid arguments!")
+            await message.channel.send("Invalid arguments!")
+            return
+
+        if args[1] == 'top':
+            # Create an object for each role
+        role = args[1]
+    
+        if args[1] == 'jungle':
+             # Create an object for each role
+        role = args[1]
+
+        if args[1] == 'mid':
+             # Create an object for each role
+        role = args[1]
+
+        if args[1] == ('adc') or args[1] == ('bottom'):
+             # Create an object for each role
+        role = args[1]
+
+        if args[1] == 'support':
+             # Create an object for each role
+        role = args[1]
+        
+        else: 
+            print("incorrect role")
+            await message.channel.send("incorrect role")
+            return
+
+        embed = discord.Embed(
+            color = discord.Color.teal(), 
+            title = args[1]
+        )
+        embed.set_author(name = "champion name", url = champion.url, icon_url = '')
+        embed.set_thumbnail(url = 'tier url')
+        embed.add_field(name = "Rank", value = champion.rank, inline = True)
+        embed.add_field(name = "Pick Rate", value = champion.pick_rate, inline = True)
+        embed.add_field(name = "Win Rate", value = champion.win_rate, inline = True)
+        embed.add_field(name = "Tier", value = champion.tier, inline = True)
+        embed.set_footer(text = "stats found on Op.gg")
+
+        
+     
+
 
 
 

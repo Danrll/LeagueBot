@@ -45,7 +45,7 @@ async def on_message(message):
         embed.set_thumbnail(url = "https:" + player.tier_icon)
         embed.add_field(name = "Level", value = player.level, inline = True)
         embed.add_field(name = "Tier Rank", value = player.tier_rank, inline = True)
-        embed.add_field(name = "League Points", value = player.lp, inline = True)
+        embed.add_field(name = "LP", value = player.lp, inline = True)
         embed.add_field(name = "Wins", value = player.wins, inline = True)
         embed.add_field(name = "Losses", value = player.losses, inline = True)
         embed.add_field(name = "Win/Loss", value = player.winratio, inline = True)

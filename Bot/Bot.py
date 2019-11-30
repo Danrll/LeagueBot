@@ -4,6 +4,7 @@ import re
 import discord
 from auth import token
 from Commands.PlayerStats import PlayerStats
+from Commands.Meta import Meta
 
 TOKEN = token
 
@@ -55,9 +56,10 @@ async def on_message(message):
 
         await message.channel.send(embed = embed)
 
-     if args[0] == '!meta': #prints the best champions for a specific role
+    # prints the best champions for a specific role
+    if args[0] == '!meta':                         
           
-           # Ensure there is only 1 argument 
+        # Ensure there is only 1 argument 
         if len(args) != 2:
             print("Invalid arguments!")
             await message.channel.send("Invalid arguments!")
@@ -65,46 +67,42 @@ async def on_message(message):
 
         if args[1] == 'top':
             # Create an object for each role
-        role = args[1]
-    
-        if args[1] == 'jungle':
+            role = args[1]
+        elif args[1] == 'jungle':
              # Create an object for each role
-        role = args[1]
-
-        if args[1] == 'mid':
+            role = args[1]
+        elif args[1] == 'mid':
              # Create an object for each role
-        role = args[1]
-
-        if args[1] == ('adc') or args[1] == ('bottom'):
+            role = args[1]
+        elif args[1] == ('adc') or args[1] == ('bottom'):
              # Create an object for each role
-        role = args[1]
-
-        if args[1] == 'support':
+            role = args[1]
+        elif args[1] == 'support':
              # Create an object for each role
-        role = args[1]
-        
+            role = args[1]
         else: 
             print("incorrect role")
             await message.channel.send("incorrect role")
             return
 
-        embed = discord.Embed(
+        # List of champion objects
+        c_list = []                      
+        for rank in range(1, 4):
+            c_list.append(Meta(role, rank))
+
+            champion = c_list[rank - 1]
+            embed = discord.Embed(
             color = discord.Color.teal(), 
-            title = args[1]
-        )
-        embed.set_author(name = "champion name", url = champion.url, icon_url = '')
-        embed.set_thumbnail(url = 'tier url')
-        embed.add_field(name = "Rank", value = champion.rank, inline = True)
-        embed.add_field(name = "Pick Rate", value = champion.pick_rate, inline = True)
-        embed.add_field(name = "Win Rate", value = champion.win_rate, inline = True)
-        embed.add_field(name = "Tier", value = champion.tier, inline = True)
-        embed.set_footer(text = "stats found on Op.gg")
+            title = role
+            )
+            embed.set_author(name = champion.name, url = champion.champ_url, icon_url = champion.image)
+            embed.set_thumbnail(url = champion.tier)
+            embed.add_field(name = "Rank", value = champion.rank, inline = True)
+            embed.add_field(name = "Pick Rate", value = champion.pick_rate, inline = True)
+            embed.add_field(name = "Win Rate", value = champion.win_rate, inline = True)
+            embed.set_footer(text = "stats found on Op.gg")
 
-        
-     
-
-
-
+            await message.channel.send(embed = embed)
 
 @client.event
 async def on_ready():

@@ -12,4 +12,4 @@ LeagueBot is a Discord bot centered around the League of Legends (LoL) communiti
 ## Acknowledgements 
 * [Op.gg](https://na.op.gg/): Source of data displayed by LeagueBot's various commands
 * [Requests](https://pypi.org/project/requests/): Send HTTP requests
-* [BeautifulSoup4](https://pypi.org/project/beautifulsoup4/): Scrap information from webpages
+* [BeautifulSoup4](https://pypi.org/project/beautifulsoup4/): Scrape information from webpages

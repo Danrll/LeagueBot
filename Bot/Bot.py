@@ -93,10 +93,9 @@ async def on_message(message):
             champion = c_list[rank - 1]
             embed = discord.Embed(
             color = discord.Color.teal(), 
-            title = role
             )
-            embed.set_author(name = champion.name, url = champion.champ_url, icon_url = champion.image)
-            embed.set_thumbnail(url = champion.tier)
+            embed.set_author(name = champion.name, url = champion.champ_url, icon_url = champion.tier)
+            embed.set_thumbnail(url = champion.image)
             embed.add_field(name = "Rank", value = champion.rank, inline = True)
             embed.add_field(name = "Pick Rate", value = champion.pick_rate, inline = True)
             embed.add_field(name = "Win Rate", value = champion.win_rate, inline = True)
